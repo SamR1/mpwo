@@ -1,3 +1,4 @@
+import re
 from typing import Tuple
 
 from Crypto.PublicKey import RSA
@@ -35,3 +36,7 @@ def get_ap_url(username: str, url_type: str) -> str:
     if url_type == 'shared_inbox':
         return f'{ap_url}inbox'
     raise Exception('Invalid \'url_type\'.')
+
+
+def remove_url_scheme(url: str) -> str:
+    return re.sub(r'https?://', '', url)

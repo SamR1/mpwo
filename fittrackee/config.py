@@ -6,6 +6,8 @@ from dramatiq.brokers.stub import StubBroker
 from flask import current_app
 from sqlalchemy.pool import NullPool
 
+from fittrackee.federation.utils import remove_url_scheme
+
 if os.getenv('APP_SETTINGS') == 'fittrackee.config.TestingConfig':
     broker = StubBroker
 else:
@@ -46,7 +48,7 @@ class BaseConfig:
     }
     VERSION = (Path(f'{current_app.root_path}/VERSION')).read_text().strip()
     # ActivityPub
-    AP_DOMAIN = UI_URL.replace('https://', '')
+    AP_DOMAIN = remove_url_scheme(UI_URL)
 
 
 class DevelopmentConfig(BaseConfig):
