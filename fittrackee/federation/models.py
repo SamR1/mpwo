@@ -16,7 +16,7 @@ from .utils import generate_keys, get_ap_url
 
 
 class Domain(BaseModel):
-    """ ActivityPub Domain """
+    """ActivityPub Domain"""
 
     __tablename__ = 'domains'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -50,7 +50,7 @@ class Domain(BaseModel):
 
 
 class FollowRequest(BaseModel):
-    """ Follow request between two actors """
+    """Follow request between two actors"""
 
     __tablename__ = 'follow_requests'
     follower_actor_id = db.Column(
@@ -71,7 +71,7 @@ class FollowRequest(BaseModel):
 
 
 class Actor(BaseModel):
-    """ ActivityPub Actor """
+    """ActivityPub Actor"""
 
     __tablename__ = 'actors'
     __table_args__ = (
