@@ -46,6 +46,25 @@ class TestUserModel:
         assert User.decode_auth_token(auth_token) == user_1.id
 
 
+class TestFollowRequestModel:
+    def test_follow_request_model(
+        self,
+        app: Flask,
+        user_1: User,
+        user_2: User,
+        follow_request_from_user_1_to_user_2: FollowRequest,
+    ) -> None:
+        assert '<FollowRequest from user \'1\' to user \'2\'>' == str(
+            follow_request_from_user_1_to_user_2
+        )
+
+        serialized_follow_request = (
+            follow_request_from_user_1_to_user_2.serialize()
+        )
+        assert serialized_follow_request['from_user'] == user_1.serialize()
+        assert serialized_follow_request['to_user'] == user_2.serialize()
+
+
 class TestUserFollowingModel:
     def test_user_2_sends_follow_requests_to_user_1(
         self,
