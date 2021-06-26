@@ -22,7 +22,9 @@ from fittrackee.workouts.models import Workout
 from fittrackee.workouts.utils_files import get_absolute_file_path
 
 from .decorators import authenticate, authenticate_as_admin
-from .models import FollowRequest, User
+from .exceptions import FollowRequestAlreadyRejectedError
+from .models import User
+from .utils_follow import create_follow_request
 
 users_blueprint = Blueprint('users', __name__)
 
@@ -499,17 +501,13 @@ def follow_user(
         target_user = actor.user
 
     if target_user:
-        existing_follow_request = FollowRequest.query.filter_by(
-            follower_user_id=auth_user_id, followed_user_id=target_user.id
-        ).first()
-        if existing_follow_request:
-            if existing_follow_request.is_rejected():
-                return ForbiddenErrorResponse()
-            else:
-                return successful_response_dict
-
-        auth_user = User.query.filter_by(id=auth_user_id).first()
-        auth_user.send_follow_request_to(target_user)
+        try:
+            create_follow_request(
+                follower_user_id=auth_user_id,
+                followed_user=target_user,
+            )
+        except FollowRequestAlreadyRejectedError:
+            return ForbiddenErrorResponse()
         return successful_response_dict
 
     return UserNotFoundErrorResponse()
