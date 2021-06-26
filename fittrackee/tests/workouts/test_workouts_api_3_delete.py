@@ -7,7 +7,7 @@ from fittrackee.users.models import User
 from fittrackee.workouts.models import Sport, Workout
 from fittrackee.workouts.utils import get_absolute_file_path
 
-from ..api_test_case import ApiTestCaseMixin
+from ..test_case_mixins import ApiTestCaseMixin
 from .utils import get_random_short_id, post_an_workout
 
 

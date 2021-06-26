@@ -10,7 +10,7 @@ from fittrackee.users.models import User
 from fittrackee.users.utils_token import get_user_token
 from fittrackee.workouts.models import Sport, Workout
 
-from ..api_test_case import ApiTestCaseMixin
+from ..test_case_mixins import ApiTestCaseMixin
 
 
 class TestUserRegistration:
