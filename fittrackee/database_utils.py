@@ -17,6 +17,7 @@ def init_database(app: Flask) -> None:
     admin.admin = True
     admin.timezone = 'Europe/Paris'
     db.session.add(admin)
+    admin.create_actor()
     sport = Sport(label='Cycling (Sport)')
     sport.img = '/img/sports/cycling-sport.png'
     sport.is_default = True
