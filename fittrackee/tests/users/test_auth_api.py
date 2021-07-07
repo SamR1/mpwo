@@ -801,7 +801,6 @@ class TestUserPicture(ApiTestCaseMixin):
         )
 
         data = json.loads(response.data.decode())
-        print('data', data)
         assert response.status_code == 413
         assert 'fail' in data['status']
         assert (
@@ -833,7 +832,6 @@ class TestUserPicture(ApiTestCaseMixin):
         )
 
         data = json.loads(response.data.decode())
-        print('data', data)
         assert response.status_code == 413
         assert 'fail' in data['status']
         assert (
