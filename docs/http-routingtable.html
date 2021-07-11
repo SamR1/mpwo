@@ -66,6 +66,7 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/index.html">API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="federation/index.html">Federation documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="troubleshooting/index.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Change log</a></li>
 </ul>
@@ -118,10 +119,26 @@
    <h1>HTTP Routing Table</h1>
 
    <div class="modindex-jumpbox">
-   <a href="#cap-/api"><strong>/api</strong></a>
+   <a href="#cap-/.well-known"><strong>/.well-known</strong></a> | 
+   <a href="#cap-/api"><strong>/api</strong></a> | 
+   <a href="#cap-/federation"><strong>/federation</strong></a> | 
+   <a href="#cap-/nodeinfo"><strong>/nodeinfo</strong></a>
    </div>
 
    <table class="indextable modindextable">
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/.well-known"><td></td><td>
+       <strong>/.well-known</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="federation/nodeinfo.html#get--.well-known-nodeinfo"><code class="xref">GET /.well-known/nodeinfo</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="federation/webfinger.html#get--.well-known-webfinger"><code class="xref">GET /.well-known/webfinger</code></a></td><td>
+       <em></em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-/api"><td></td><td>
        <strong>/api</strong></td><td></td></tr>
@@ -304,6 +321,32 @@
        <td></td>
        <td>
        <a href="api/workouts.html#patch--api-workouts-(string-workout_short_id)"><code class="xref">PATCH /api/workouts/(string:workout_short_id)</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/federation"><td></td><td>
+       <strong>/federation</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="federation/federation.html#get--federation-user-(string-preferred_username)"><code class="xref">GET /federation/user/(string:preferred_username)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="federation/federation.html#post--federation-remote-user"><code class="xref">POST /federation/remote-user</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="federation/federation.html#post--federation-user-(string-preferred_username)-inbox"><code class="xref">POST /federation/user/(string:preferred_username)/inbox</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/nodeinfo"><td></td><td>
+       <strong>/nodeinfo</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="federation/nodeinfo.html#get--nodeinfo-2.0"><code class="xref">GET /nodeinfo/2.0</code></a></td><td>
        <em></em></td></tr>
    </table>
 

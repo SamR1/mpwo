@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Troubleshooting &#8212; FitTrackee 0.4.8
+    <title>WebFinger &#8212; FitTrackee 0.4.8
  documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
@@ -16,8 +16,8 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Administrator" href="administrator.html" />
-    <link rel="prev" title="Federation" href="../federation/federation.html" />
+    <link rel="next" title="Federation" href="federation.html" />
+    <link rel="prev" title="NodeInfo" href="nodeinfo.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -62,8 +62,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/index.html">API documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../federation/index.html">Federation documentation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Federation documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change log</a></li>
 </ul>
 </ul>
@@ -78,7 +78,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Troubleshooting</a></li>
+<li><a class="reference internal" href="#">WebFinger</a></li>
 </ul>
 </ul>
 </li>
@@ -88,11 +88,11 @@
               
                 
   <li>
-    <a href="../federation/federation.html" title="Previous Chapter: Federation"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Federation</span>
+    <a href="nodeinfo.html" title="Previous Chapter: NodeInfo"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; NodeInfo</span>
     </a>
   </li>
   <li>
-    <a href="administrator.html" title="Next Chapter: Administrator"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Administrator &raquo;</span>
+    <a href="federation.html" title="Next Chapter: Federation"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Federation &raquo;</span>
     </a>
   </li>
               
@@ -102,7 +102,7 @@
             
               <li class="hidden-sm">
 <div id="sourcelink">
-  <a href="../_sources/troubleshooting/index.rst.txt"
+  <a href="../_sources/federation/webfinger.rst.txt"
      rel="nofollow">Source</a>
 </div></li>
             
@@ -126,18 +126,54 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="troubleshooting">
-<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p><span class="caption-text">Endpoints:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="administrator.html">Administrator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="administrator.html#fittrackee-fails-to-start"><cite>FitTrackee fails to start</cite></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="user.html">User</a></li>
-</ul>
+  <section id="webfinger">
+<h1>WebFinger<a class="headerlink" href="#webfinger" title="Permalink to this headline">¶</a></h1>
+<dl class="http get">
+<dt id="get--.well-known-webfinger">
+<code class="sig-name descname"><span class="pre">GET</span> </code><code class="sig-name descname"><span class="pre">/.well-known/webfinger</span></code><a class="headerlink" href="#get--.well-known-webfinger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get account links</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/.well-known/webfinger?resource=acct:Sam@example.com</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
 </div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/jrd+json; charset=utf-8</span>
+
+<span class="p">{</span>
+  <span class="nt">&quot;subject&quot;</span><span class="p">:</span> <span class="s2">&quot;acct:Sam@example.com&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://example.com/federation/user/Sam&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/activity+json&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Query Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>acct</strong> (<em>string</em>) – user account</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – success</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – <ul>
+<li><p>Missing resource in request args.</p></li>
+<li><p>Invalid resource.</p></li>
+</ul>
+</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> – Error. Federation is disabled for this instance.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> – User does not exist.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
